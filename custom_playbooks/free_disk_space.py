@@ -12,7 +12,7 @@ def free_disk_space(event: PrometheusKubernetesAlert):
         pod_name="node-bash-pod", node_name=node.metadata.name,cmd="touch test.txt",debug_image="busybox"
     )
 
-    block_list.append(MarkdownBlock(f"Command results for *touch test.txt* UPDATED"))
+    block_list.append(MarkdownBlock(f"Command results for *touch test.txt*"))
     block_list.append(MarkdownBlock(exec_result))
 
     finding = event.create_default_finding()
