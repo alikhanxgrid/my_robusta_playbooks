@@ -9,7 +9,7 @@ def free_disk_space(event: PrometheusKubernetesAlert):
 
     block_list: List[BaseBlock] = []
     exec_result = RobustaPod.exec_in_debugger_pod(
-        pod_name="node-bash-pod", node_name=node.metadata.name,cmd="touch test.txt",debug_image="busybox"
+        "node-bash-pod", node.metadata.name, "df -h"
     )
 
     block_list.append(MarkdownBlock(f"Command results for *touch test.txt*"))
