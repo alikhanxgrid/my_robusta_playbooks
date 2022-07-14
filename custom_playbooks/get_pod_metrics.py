@@ -25,17 +25,17 @@ def create_metrics_enrichment(
     cpu_usage_pod_query = 'sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_irate{namespace="$namespace", pod=~"$pod"})'
     promql_query = __prepare_promql_query(labels, cpu_usage_pod_query)
     cpu_query_output = run_prom_query(promql_query)
-    mem_usage_pod_query = 'sum(container_memory_working_set_bytes{job="kubelet", metrics_path="/metrics/cadvisor", pod=~"$pod", container!="", image!=""})',
-    promql_query = __prepare_promql_query(labels, mem_usage_pod_query)
-    mem_query_output = run_prom_query(promql_query)
+    #mem_usage_pod_query = 'sum(container_memory_working_set_bytes{job="kubelet", metrics_path="/metrics/cadvisor", pod=~"$pod", container!="", image!=""})',
+    #promql_query = __prepare_promql_query(labels, mem_usage_pod_query)
+    #mem_query_output = run_prom_query(promql_query)
 
     block_list: List[BaseBlock] = []
     #block_list.append(MarkdownBlock(f"Command results for *{params.bash_command}:*"))
     block_list.append(MarkdownBlock(f"Pod CPU Usage"))
     block_list.append(MarkdownBlock(cpu_query_output))
 
-    block_list.append(MarkdownBlock(f"Pod Memory Usage"))
-    block_list.append(MarkdownBlock(mem_query_output))
+    #block_list.append(MarkdownBlock(f"Pod Memory Usage"))
+    #block_list.append(MarkdownBlock(mem_query_output))
 
     return block_list
 
